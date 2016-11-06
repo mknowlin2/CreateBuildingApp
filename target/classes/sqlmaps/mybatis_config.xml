@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+  <typeAliases>
+  	<typeAlias alias="building" type="com.webapp.knowlin.model.Building"/>
+  	<typeAlias alias="address" type="com.webapp.knowlin.model.Address"/>
+  	<typeAlias alias="floor" type="com.webapp.knowlin.model.Floor"/>
+  </typeAliases>
+  <mappers>
+    <mapper resource="com/webapp/knowlin/persistence/BuildingMapper.xml"/>
+    <mapper resource="com/webapp/knowlin/persistence/AddressMapper.xml"/>
+    <mapper resource="com/webapp/knowlin/persistence/FloorMapper.xml"/>
+  </mappers>
+</configuration>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.webapp.knowlin.persistence.BuildingMapper">
+ 	<resultMap id="buildingResult" type="building">
+ 		<result property="buildingId" column="id"/>
+ 		<result property="name" column="name"/>
+ 		<result property="statCd" column="stat_cd" typeHandler="com.webapp.knowlin.persistence.handlers.StatusCdTypeHandler"/>
+ 		<result property="buildDt" column="build_dt"/>
+ 		<result property="demolishDt" column="demolish_dt"/>
+ 	</resultMap>
+ 	
+ 	<insert id="createBuilding" parameterType="building" useGeneratedKeys="true" keyProperty="buildingId" keyColumn="id">
+ 		insert into building(name, stat_cd, build_dt) values (#{name}, #{statCd.code}, sysdate())
+ 	</insert>
+
+	<update id="editBuildingName" parameterType="building">
+		update building
+		set name = #{name}
+		where id = #{buildingId}
+	</update>
+	
+	<update id="updateBuildingStatus" parameterType="building">
+		update building
+		set stat_cd = #{statCd.code}
+		where id = #{buildingId}
+	</update>
+	
+	<select id="getBuildingById" parameterType="int" resultMap="buildingResult">
+		select *
+		from building
+		where id = #{value}
+	</select>
+	
+	<select id="getAllBuildings" parameterType="int"
+		resultMap="buildingResult">
+		select *
+		from building
+	</select>
+
+	<update id="removeBuilding" parameterType="building">
+		update building
+		set stat_cd = 'I', demolish_dt = sysdate()
+		where id = #{buildingId}
+	</update>
+ </mapper>

@@ -1,0 +1,15 @@
+com/webapp/knowlin/persistence/FloorMapper.class
+com/webapp/knowlin/services/FloorService.class
+com/webapp/knowlin/model/StatusCd.class
+com/webapp/knowlin/services/AddressService.class
+com/webapp/knowlin/services/FloorServiceImpl.class
+com/webapp/knowlin/model/Floor.class
+com/webapp/knowlin/controller/BuildingController.class
+com/webapp/knowlin/services/BuildingService.class
+com/webapp/knowlin/model/Building.class
+com/webapp/knowlin/persistence/AddressMapper.class
+com/webapp/knowlin/persistence/handlers/StatusCdTypeHandler.class
+com/webapp/knowlin/services/AddressServiceImpl.class
+com/webapp/knowlin/persistence/BuildingMapper.class
+com/webapp/knowlin/model/Address.class
+com/webapp/knowlin/services/BuildingServiceImpl.class

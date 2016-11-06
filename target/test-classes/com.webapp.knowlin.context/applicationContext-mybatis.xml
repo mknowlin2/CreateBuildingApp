@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/task 
+        http://www.springframework.org/schema/task/spring-task.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- Data Source for running unit tests -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.SingleConnectionDataSource"
+		p:driverClassName="com.mysql.jdbc.Driver" p:url="jdbc:mysql://localhost:3306/building_app_schema"
+		p:username="root" p:password="M@y20#1982" />
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
+		p:dataSource-ref="dataSource" p:configLocation="classpath:sqlmaps/mybatis_config.xml"
+		p:mapperLocations="classpath:*:persistence/**/*.xml">
+	</bean>
+
+	<!-- Mapper Beans -->
+	<bean id="buildingMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+		p:mapperInterface="com.webapp.knowlin.persistence.BuildingMapper"
+		p:sqlSessionFactory-ref="sqlSessionFactory" />
+	<bean id="addressMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+		p:mapperInterface="com.webapp.knowlin.persistence.AddressMapper"
+		p:sqlSessionFactory-ref="sqlSessionFactory" />
+	<bean id="floorMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+		p:mapperInterface="com.webapp.knowlin.persistence.FloorMapper"
+		p:sqlSessionFactory-ref="sqlSessionFactory" />
+</beans>

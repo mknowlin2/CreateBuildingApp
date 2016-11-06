@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.webapp.knowlin.persistence.FloorMapper">
+	<resultMap id="floorResult" type="floor">
+		<result property="buildingId" column="building_id" />
+		<result property="floorNumber" column="floor_num" />
+		<result property="roomCount" column="room_cnt" />
+	</resultMap>
+	
+	<insert id="addFloor" parameterType="floor">
+		insert into floor(building_id, floor_num, room_cnt) values (#{buildingId},
+		#{floorNumber}, #{roomCount})
+	</insert>
+
+	<select id="getFloorsByBuildingById" parameterType="int"
+		resultMap="floorResult">
+		select *
+		from floor
+		where building_id = #{value}
+	</select>
+</mapper>
